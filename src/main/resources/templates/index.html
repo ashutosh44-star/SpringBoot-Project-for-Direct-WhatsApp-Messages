@@ -155,6 +155,7 @@
         let mobileNo = mobileNoInput.value.trim();
 
         if (mobileNo === "" || mobileNo.length !== 10) {
+			alert("Plase enter a valid 10-Digit Number..!")
             startMessagingButton.setAttribute("disabled", "true");
         } else {
             startMessagingButton.removeAttribute("disabled");
