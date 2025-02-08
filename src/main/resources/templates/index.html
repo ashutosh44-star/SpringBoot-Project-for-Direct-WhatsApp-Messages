@@ -155,16 +155,24 @@
         let mobileNo = mobileNoInput.value.trim();
 
         if (mobileNo === "" || mobileNo.length !== 10) {
-			alert("Plase enter a valid 10-Digit Number..!")
+			 alert("Please enter a valid 10-digit mobile number.");
             startMessagingButton.setAttribute("disabled", "true");
         } else {
             startMessagingButton.removeAttribute("disabled");
         }
     }
 
-    validateMobileNo();
-
+    
     mobileNoInput.addEventListener("change", validateMobileNo);
+
+    startMessagingButton.addEventListener("click", function (event) {
+        let mobileNo = mobileNoInput.value.trim();
+        if (mobileNo === "") {
+            alert("Please enter a valid 10-digit mobile number.");
+            event.preventDefault(); 
+            startMessagingButton.setAttribute("disabled", "true");
+        }
+    });
 });
    
         function createBubble() {
