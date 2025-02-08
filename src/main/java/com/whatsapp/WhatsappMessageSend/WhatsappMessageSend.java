@@ -25,7 +25,7 @@ public class WhatsappMessageSend {
 
 	@GetMapping("/")
 	public String dashboard(Model m, Principal principal) {
-	     return "main";
+	     return "index";
 	}
 	
 	@PostMapping("/sendMessage")
@@ -33,6 +33,6 @@ public class WhatsappMessageSend {
 			HttpServletResponse res) throws IOException {
 		System.out.println("inside sendMessage--------"+mobileNo);
 	    res.sendRedirect("https://wa.me/"+ mobileNo);
-		return "main";
+		return "index";
 	}
 }
