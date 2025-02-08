@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpServletResponse;
@@ -22,7 +23,7 @@ public class WhatsappMessageSend {
 	Integer id;
 	String img="";
 
-	@GetMapping("/main")
+	@GetMapping("/")
 	public String dashboard(Model m, Principal principal) {
 	     return "main";
 	}
