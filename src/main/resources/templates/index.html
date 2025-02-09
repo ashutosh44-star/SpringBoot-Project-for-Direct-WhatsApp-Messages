@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Start Sending Direct Messages on WhatsApp</title>
         <link rel="icon" type="image/png" href="/image/ashu.png">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <style>
         * {
@@ -155,7 +156,12 @@
         let mobileNo = mobileNoInput.value.trim();
 
         if (mobileNo === "" || mobileNo.length !== 10) {
-			 alert("Please enter a valid 10-digit mobile number.");
+				Swal.fire({
+                icon: "warning",
+                title: "Invalid Input",
+                text: "Please enter a valid 10-digit mobile number!",
+                confirmButtonColor: "#007BFF"
+            });
             startMessagingButton.setAttribute("disabled", "true");
         } else {
             startMessagingButton.removeAttribute("disabled");
@@ -168,7 +174,12 @@
     startMessagingButton.addEventListener("click", function (event) {
         let mobileNo = mobileNoInput.value.trim();
         if (mobileNo === "") {
-            alert("Please enter a valid 10-digit mobile number.");
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Mobile number cannot be empty!",
+                confirmButtonColor: "#FF4B2B"
+            });
             event.preventDefault(); 
             startMessagingButton.setAttribute("disabled", "true");
         }
