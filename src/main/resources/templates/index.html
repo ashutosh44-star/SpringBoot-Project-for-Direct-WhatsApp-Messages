@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Start Sending Direct Messages on WhatsApp</title>
-        <link rel="icon" type="image/png" href="/image/ashu.png">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="icon" type="image/png" href="/image/ashu.png">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <style>
         * {
@@ -133,59 +133,70 @@
     <div class="developer-text">🚀 Developed by Ashutosh 🚀</div>
     <div class="bubbles"></div>
     <div class="container">
-		<form class="form-group" action="/sendMessage" method="post" target="_blank">
-        <h2>Start Chatting</h2>
-        <input type="number" id="mobileNo" name="mobileNo" placeholder="Enter Number">
-        <button id="startmessaging">
-            <img class="whatsapp-icon" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-            Start Chatting
-        </button>
+        <form class="form-group" action="/sendMessage" method="post" target="_blank">
+            <h2>Start Chatting</h2>
+            <input type="number" id="mobileNo" name="mobileNo" placeholder="Enter Number">
+            <button id="startmessaging">
+                <img class="whatsapp-icon" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+                Start Chatting
+            </button>
         </form>
     </div>
-    <script>
-	document.addEventListener("DOMContentLoaded", function () {
-    const mobileNoInput = document.getElementById("mobileNo");
-    const startMessagingButton = document.getElementById("startmessaging");
-
-    if (!mobileNoInput || !startMessagingButton) {
-        console.error("Elements not found! Make sure the ID and tags exist.");
-        return;
-    }
-
-    function validateMobileNo() {
-        let mobileNo = mobileNoInput.value.trim();
-
-        if (mobileNo === "" || mobileNo.length !== 10) {
-				Swal.fire({
-                icon: "warning",
-                title: "Invalid Input",
-                text: "Please enter a valid 10-digit mobile number!",
-                confirmButtonColor: "#007BFF"
-            });
-            startMessagingButton.setAttribute("disabled", "true");
-        } else {
-            startMessagingButton.removeAttribute("disabled");
-        }
-    }
-
     
-    mobileNoInput.addEventListener("change", validateMobileNo);
+    <script>
+       
 
-    startMessagingButton.addEventListener("click", function (event) {
-        let mobileNo = mobileNoInput.value.trim();
-        if (mobileNo === "") {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Mobile number cannot be empty!",
-                confirmButtonColor: "#FF4B2B"
-            });
-            event.preventDefault(); 
-            startMessagingButton.setAttribute("disabled", "true");
+        document.addEventListener("DOMContentLoaded", function () {
+        const mobileNoInput = document.getElementById("mobileNo");
+        const startMessagingButton = document.getElementById("startmessaging");
+
+        if (!mobileNoInput || !startMessagingButton) {
+            console.error("Elements not found! Make sure the ID and tags exist.");
+            return;
         }
+
+        startMessagingButton.addEventListener("click", function (event) {
+            let mobileNo = mobileNoInput.value.trim();
+
+            // Check if empty
+            if (mobileNo === "") {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Mobile number cannot be empty!",
+                    confirmButtonColor: "#FF4B2B"
+                });
+                event.preventDefault();
+                return;
+            }
+
+            // Check if length is not 10
+            if (mobileNo.length !== 10) {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Invalid Number",
+                    text: "Mobile number must be exactly 10 digits!",
+                    confirmButtonColor: "#007BFF"
+                });
+                event.preventDefault();
+                return;
+            }
+
+            // Check if the first digit is between 0 and 5
+            if (/^[0-5]/.test(mobileNo)) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Invalid Mobile Number",
+                    text: "Mobile number cannot start with digits 0 to 5!",
+                    confirmButtonColor: "#FF4B2B"
+                });
+                event.preventDefault();
+                return;
+            }
+        });
     });
-});
-   
+
+
         function createBubble() {
             const bubble = document.createElement("div");
             bubble.classList.add("bubble");
@@ -201,8 +212,6 @@
             });
         }
         setInterval(createBubble, 500);
-	
-		
     </script>
 </body>
 </html>
